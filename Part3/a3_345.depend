@@ -1,0 +1,164 @@
+# depslib dependency file v1.0
+1509921659 source:/home/louis/Documents/C++/a3_345/Continent.cpp
+	<stdio.h>
+	"Continent.h"
+	<iostream>
+
+1509921659 /home/louis/Documents/C++/a3_345/Continent.h
+	"Country.h"
+	<iostream>
+
+1509921659 /home/louis/Documents/C++/a3_345/Country.h
+	<iostream>
+	<vector>
+
+1510096455 source:/home/louis/Documents/C++/a3_345/Country.cpp
+	<stdio.h>
+	"Country.h"
+	"Continent.h"
+	"Player.h"
+	<iostream>
+	<vector>
+
+1510274107 /home/louis/Documents/C++/a3_345/Player.h
+	"Dice.h"
+	"deck.h"
+	"Hand.h"
+	"Country.h"
+	"Continent.h"
+	"Map.h"
+	"Subject.h"
+	<stdio.h>
+
+1510275952 /home/louis/Documents/C++/a3_345/Dice.h
+	<stdio.h>
+	<vector>
+
+1509921659 /home/louis/Documents/C++/a3_345/deck.h
+	<vector>
+
+1510096506 /home/louis/Documents/C++/a3_345/Hand.h
+	"Hand.h"
+	"deck.h"
+	<vector>
+	<iostream>
+	<stdio.h>
+
+1510283069 /home/louis/Documents/C++/a3_345/Map.h
+	<iostream>
+	<vector>
+	<stdio.h>
+
+1510096516 source:/home/louis/Documents/C++/a3_345/deck.cpp
+	"deck.h"
+	<iostream>
+	<vector>
+	<cstdlib>
+	<ctime>
+
+1510276119 source:/home/louis/Documents/C++/a3_345/Dice.cpp
+	"Dice.h"
+	<cstdlib>
+	<ctime>
+	<iostream>
+
+1510096536 source:/home/louis/Documents/C++/a3_345/Hand.cpp
+	"Hand.h"
+	"deck.h"
+	<vector>
+	<iostream>
+
+1510284919 source:/home/louis/Documents/C++/a3_345/main.cpp
+	<iostream>
+	"Country.h"
+	"Continent.h"
+	"Map.h"
+	"MapLoader.h"
+	"Start.h"
+	"WorldDomObserver.h"
+	"Player.h"
+	<iostream>
+	<fstream>
+	<iomanip>
+	<string>
+	<vector>
+
+1510178788 /home/louis/Documents/C++/a3_345/MapLoader.h
+	<iostream>
+	<vector>
+	<stdio.h>
+
+1510281998 /home/louis/Documents/C++/a3_345/Start.h
+	"Player.h"
+	"Map.h"
+	"MapLoader.h"
+	"deck.h"
+	"Hand.h"
+	"Dice.h"
+	<stdio.h>
+
+1510096542 source:/home/louis/Documents/C++/a3_345/Map.cpp
+	"Continent.h"
+	"Country.h"
+	"Map.h"
+	<iostream>
+	<vector>
+	<queue>
+
+1510178794 source:/home/louis/Documents/C++/a3_345/MapLoader.cpp
+	"MapLoader.h"
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<iostream>
+	<sstream>
+
+1510284963 source:/home/louis/Documents/C++/a3_345/Player.cpp
+	"Player.h"
+	<iostream>
+
+1510281629 source:/home/louis/Documents/C++/a3_345/Start.cpp
+	"Start.h"
+	"Player.h"
+	"Map.h"
+	"MapLoader.h"
+	"deck.h"
+	"Hand.h"
+	<algorithm>
+	<random>
+	<ctime>
+	<cstdlib>
+	"Dice.h"
+	<vector>
+	<iostream>
+
+1510185781 source:/home/louis/Documents/C++/a3_345/Observer.cpp
+	"Observer.h"
+
+1510201310 /home/louis/Documents/C++/a3_345/Observer.h
+
+1510285204 source:/home/louis/Documents/C++/a3_345/Subject.cpp
+	"Subject.h"
+	"Observer.h"
+	<iostream>
+
+1510267087 /home/louis/Documents/C++/a3_345/Subject.h
+	<list>
+	"Observer.h"
+
+1510285204 source:/home/louis/Documents/C++/a3_345/WorldDomObserver.cpp
+	"WorldDomObserver.h"
+	"Player.h"
+	<iostream>
+
+1510285150 /home/louis/Documents/C++/a3_345/WorldDomObserver.h
+	"Observer.h"
+	"Player.h"
+	"Map.h"
+	"Start.h"
+
+1510273604 /home/louis/Documents/C++/a3_345/PlayerType.h
+	<stdio.h>
+	"Player.h"
+
