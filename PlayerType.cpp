@@ -67,7 +67,7 @@ void AggressivePlayer::attack(Player* x)
     }
     cout<<endl;
     cout<<strongest->get_country_name() << " chosen to attack!"<<endl;
-    cout << "Starting the ATTACK PHASE with"  << strongest->armiesnum() << " armies" << endl;
+    cout << "Starting the ATTACK PHASE with "  << strongest->armiesnum() << " armies" << endl;
     //while strongest army still has armies
     
     
@@ -586,9 +586,9 @@ void RandomPlayer::attack(Player* x){
     std:: cout<<"-------------"<< "Player " << x->get_player_id()<<"-------------"<<endl;
     std:: cout << "Attacking for Random player" << endl;
     int v = rand()% (x->get_number_of_countries());
-    std:: cout <<x->getCountries()[v]->get_country_name()<< " chosen to attack" <<endl;
+   // std:: cout <<x->getCountries()[v]->get_country_name()<< " chosen to attack" <<endl;
     while(adj==false){
-        //check for adjcacnet countries,
+        //check for adj countries,
         for(int i = 0 ; i < x->getCountries()[v]->getAdjCountries().size(); i++ ){
             if(x->getCountries()[v]->getAdjCountries()[i]->getPlayer()!=x){
                 adj =true;
@@ -597,11 +597,12 @@ void RandomPlayer::attack(Player* x){
         }
         if(adj==false){
             v = rand()% (x->get_number_of_countries());
-            cout<< "That country didn't have any adj countries belonging to another player. Another random index was chosen"<<endl;
-            std:: cout <<x->getCountries()[v]->get_country_name()<< " chosen to attack" <<endl;
+//            cout<< "That country didn't have any adj countries belonging to another player. Another random index was chosen"<<endl;
+           // std:: cout <<x->getCountries()[v]->get_country_name()<< " chosen to attack" <<endl;
         }
         
     }
+    
     int defender = rand()%(x->getCountries()[v]->getAdjCountries().size());
     adj=false;
     //check if random adj country selected belongs to another player
@@ -613,7 +614,7 @@ void RandomPlayer::attack(Player* x){
         else
             defender = rand()%(x->getCountries()[v]->getAdjCountries().size());
         }
-    
+     std:: cout <<x->getCountries()[v]->get_country_name()<< " chosen to attack" <<endl;
     //unsure how large this number should be..
     int  numofattacks = rand() % 10;
     int timestoattack = 0;
@@ -622,7 +623,7 @@ void RandomPlayer::attack(Player* x){
     Country* defend = x->getCountries()[v]->getAdjCountries()[defender];
     //shall attack until someone wins of rounds run out
     while(timestoattack!=numofattacks&&attack->armiesnum()>1&&defend->armiesnum()>0){
-        cout<<"Player "<<defend->getPlayer()->get_player_id()<< " defending " <<attack->get_country_name()<<endl;
+        cout<<"Player "<<defend->getPlayer()->get_player_id()<< " defending " <<defend->get_country_name()<<endl;
         cout << "Defender has " << defend->armiesnum() << " armies." << endl;
         
         int rounds=0;
@@ -698,6 +699,7 @@ void RandomPlayer::attack(Player* x){
             x->addCountry(defend);
             
             cout << "Attacker owns " << defend->get_country_name() <<" now " << endl;
+            
             if(x->getDeck()->getCardNo()>1){
                 x->gettheirhand()->addCard(x->getDeck()->Draw());
             }
@@ -715,25 +717,46 @@ void RandomPlayer::attack(Player* x){
     cout<<"END OF ATTACK PHASE"<<endl;
 }
 void RandomPlayer::fortify(Player* x){
-    //bool valid = false;
+    bool valid = false;
     //source country is random
     //destination country is random
     //num of countries moved is random
     std:: cout<<"-------------"<< "Player " << x->get_player_id()<<"-------------"<<endl;
     std:: cout << "Fortifying for Random player" << endl;
-    int fort = rand()% (x->get_number_of_countries());
-    int des = rand()% (x->getCountries()[fort]->getAdjCountries().size());
-    cout<<"Trying to fortify "<<x->getCountries()[fort]->get_country_name()<<endl;
-    if(x->getCountries()[fort]->getAdjCountries()[des]->getPlayer()==x&&x->getCountries()[fort]->getAdjCountries()[des]->armiesnum()>1){
-        cout<<"Moving countries from " <<x->getCountries()[fort]->getAdjCountries()[des]->get_country_name() <<" to "<<x->getCountries()[fort]->get_country_name()<<endl;
+    //a temp vector to find
+    vector<Country*> abletoFortify;
+    //pick a random index from this vector, if empty cannot fortify..
+    for(int i = 0; i<x->getCountries().size();i++){
+        for(int j = 0; j<x->getCountries()[i]->getAdjCountries().size();j++){
+            if(x->getCountries()[i]->getAdjCountries()[j]->getPlayer()==x&&x->getCountries()[i]->getAdjCountries()[j]->armiesnum()>1){
+                abletoFortify.push_back(x->getCountries()[i]);
+                
+            }
+        }
+    }
+    
+    if(abletoFortify.size()>0){
+    int fort = rand()% (abletoFortify.size());
+    int des = rand()% (abletoFortify[fort]->getAdjCountries().size());
+    cout<<"Fortify "<<abletoFortify[fort]->get_country_name()<<endl;
+        while(valid==false){
+    if(abletoFortify[fort]->getAdjCountries()[des]->armiesnum()>1&&abletoFortify[fort]->getAdjCountries()[des]->getPlayer()==x){
+        cout<<"Moving countries from " <<abletoFortify[fort]->getAdjCountries()[des]->get_country_name() <<" to "<<abletoFortify[fort]->get_country_name()<<endl;
         //moving 1 to numofarmies-1
-        int amount = rand() % 1+(x->getCountries()[fort]->getAdjCountries()[des]->armiesnum()-1);
+        int amount = rand() % 1+(abletoFortify[fort]->getAdjCountries()[des]->armiesnum()-1);
         cout<<"Amount moved was "<<amount<<endl;
-        x->getCountries()[fort]->addarmies(amount);
-        x->getCountries()[fort]->getAdjCountries()[des]->removearmies(amount);
+        abletoFortify[fort]->addarmies(amount);
+        abletoFortify[fort]->getAdjCountries()[des]->removearmies(amount);
+        valid=true;
+      //  break;
+    }
+            else
+                des = rand()% (abletoFortify[fort]->getAdjCountries().size());;
+                
+    }
     }
     else
-        cout<<"Unable to move because random country chosen does not have neighbours belonging to it "<<endl;
+        cout<<"Unable to move because cannot find country with adj countries"<<endl;
     
     
     

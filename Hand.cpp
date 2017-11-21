@@ -49,14 +49,14 @@ int Hand::computerexchange(){
             }
             
         }
-            cout<<"Printing status of hand.. You have "<< numOfCards<<endl;
+            cout<<"Printing status of hand.. You have "<< cards.size()<<endl;
             cout <<"I: "<<(check[0])<<" ";
             cout <<"C: "<<(check[1])<<" ";
             cout <<"A: "<<(check[2])<< endl;
             
         
       
-        if(check[0]>=1 && check[1]>=1 && check[2]>=1)//will tell us if you have enough cards to exchange, if so will give option to trade them in for armies
+        if((check[0]>=1) && (check[1]>=1) && (check[2]>=1))//will tell us if you have enough cards to exchange, if so will give option to trade them in for armies
         {
          numOfCards-= 3;
             cout<<endl;
@@ -83,9 +83,9 @@ int Hand::computerexchange(){
                     }
             
             addedarmies+=rateOfExchange();
+        }
             
-            
-            if(check[0]>=3 || check[1]>=3 || check[2]>=3)//identical but in triggered if 3 cards are the same
+            if((check[0]>=3) || (check[1]>=3) || (check[2]>=3))//identical but in triggered if 3 cards are the same
             {
                 numOfCards-= 3;
                 cout<<endl;
@@ -144,7 +144,7 @@ int Hand::computerexchange(){
         }
     }
   
-}
+
     return addedarmies;
 }
 
